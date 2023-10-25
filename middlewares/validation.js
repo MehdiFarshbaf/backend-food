@@ -4,15 +4,18 @@ export const validation = schema => async (req, res, next) => {
         await schema.validate(body, {abortEarly: false})
         next()
     } catch (err) {
+
         const errorArr = [];
         let names = [];
+
         err.inner.forEach((e) => {
-            names.push(e.path)
             errorArr.push({
                 name: e.path,
                 message: e.message,
             });
+            names.push(e.path)
         });
+
         const errorName = [...new Set(names)]
         let errors = {}
         errorName.map(item => {
