@@ -5,7 +5,7 @@ import Restaurant from "../models/Restaurant.js";
 
 export const getAllRestaurants = async (req, res, next) => {
     try {
-        const restaurants = await Restaurant.find().select(["-adminPassword", "-adminUsername", "-id", "-__v"])
+        const restaurants = await Restaurant.find().select(["-adminPassword", "-adminUsername", "-id", "-__v"]).populate("menus")
         res.status(200).json({
             success: true,
             restaurants
@@ -17,7 +17,7 @@ export const getAllRestaurants = async (req, res, next) => {
 
 export const getRestaurant = async (req, res, next) => {
     try {
-        const restaurant = await Restaurant.findById(req?.params?.id)
+        const restaurant = await Restaurant.findById(req?.params?.id).populate("menus")
 
         if (!restaurant) {
             const error = new Error("رستورانی با این شناسه یافت نشد.")
@@ -52,7 +52,6 @@ export const createRestaurant = async (req, res, next) => {
 export const updateRestaurant = async (req, res, next) => {
 
     const {id} = req.params
-    console.log(req.resurantId)
     const {name, description, address} = req.body
 
     try {

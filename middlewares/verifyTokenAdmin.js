@@ -15,7 +15,7 @@ export const verifyTokenAdmin = async (req, res, next) => {
                 error.statusCode = 401
                 throw error
             }
-            req.resurantId = decode._id
+            req.user = decode
             next()
         })
 

@@ -38,7 +38,7 @@ restaurantSchema.virtual("comments", {
     localField: "_id"
 })
 restaurantSchema.virtual("menus", {
-    ref: "Menu",
+    ref: "Food",
     foreignField: "restaurant",
     localField: "_id"
 })

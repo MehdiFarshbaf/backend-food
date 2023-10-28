@@ -7,6 +7,7 @@ import {errorHandler} from "./middlewares/error.js";
 
 // routers import
 import restaurantRoutes from "./routes/restaurantRoutes.js";
+import foodRoutes from "./routes/foodRoutes.js";
 
 // Load Config
 dotenv.config()
@@ -24,6 +25,7 @@ app.use(headers)
 
 // Routes
 app.use("/api/restaurant", restaurantRoutes)
+app.use("/api/food", foodRoutes)
 
 // error handler
 app.use(errorHandler)
